@@ -38,7 +38,7 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install browsers
-        run: npx playwright install --with-deps ${{ matrix.project }}
+        run: npx playwright install --with-deps
 
       - name: Run tests
         run: npx playwright test --project=${{ matrix.project }}
