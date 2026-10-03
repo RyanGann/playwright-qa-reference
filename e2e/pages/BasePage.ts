@@ -11,14 +11,14 @@ export abstract class BasePage {
   readonly cartLink: Locator;
   readonly cartBadge: Locator;
   readonly menuButton: Locator;
-  readonly logoutLink: Locator;
+  readonly logoutButton: Locator;
 
   protected constructor(page: Page) {
     this.page = page;
     this.cartLink = page.locator('.shopping_cart_link');
     this.cartBadge = page.locator('.shopping_cart_badge');
     this.menuButton = page.getByRole('button', { name: 'Open Menu' });
-    this.logoutLink = page.getByRole('link', { name: 'Logout' });
+    this.logoutButton = page.getByRole('button', { name: 'Logout', exact: true });
   }
 
   async goto(path = '/'): Promise<void> {
@@ -44,7 +44,7 @@ export abstract class BasePage {
 
   async signOut(): Promise<void> {
     await this.menuButton.click();
-    await this.logoutLink.click();
+    await this.logoutButton.click();
     await expect(this.page).toHaveURL(/saucedemo\.com\/?$/);
   }
 }

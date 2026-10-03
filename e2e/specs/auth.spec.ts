@@ -71,5 +71,6 @@ test.describe('sign-out', () => {
     // And the session is genuinely gone, not just visually.
     await page.goto('/inventory.html');
     await expect(page).not.toHaveURL(/inventory\.html/);
+    await expect(loginPage.submit).toBeVisible();
   });
 });
